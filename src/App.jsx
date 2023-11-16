@@ -4,7 +4,7 @@ import "./App.css";
 import SpotifyAPI from "./utils/SpotifyAPI.jsx";
 import axios from "axios";
 import MusicPlayer from "./components/MusicPlayer.jsx";
-import Content from "./components/Content.js";
+import Content from "./components/Content.jsx";
 
 function App() {
     const [token, setToken] = useState();
