@@ -3,7 +3,7 @@ import "./App.css";
 
 import SpotifyAPI from "./utils/SpotifyAPI.jsx";
 import axios from "axios";
-import MusicPlayer from "./components/MusicPlayer.js";
+import MusicPlayer from "./components/MusicPlayer.jsx";
 import Content from "./components/Content.js";
 
 function App() {
