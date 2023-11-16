@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 const SpotifyAPI = ({ token, setToken, setUserData }) => {
     const CLIENT_ID = "eeb3aa5f41a24a408d944e97df56766c";
     const CLIENT_SECRET = "c4da42aa8ad74a26a6e7407af0985c87";
-    const REDIRECT_URI = "http://localhost:5173/callback";
+    const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize?";
     const RESPONSE_TYPE = "code";
 
@@ -23,6 +23,8 @@ const SpotifyAPI = ({ token, setToken, setUserData }) => {
         "user-library-read"
     ];
     const handleLogin = () => {
+        console.log(REDIRECT_URI);
+
         window.location.href = `${AUTH_ENDPOINT}client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE.join(
             " "
         )}&response_type=${RESPONSE_TYPE}&show_dialog=true`;
