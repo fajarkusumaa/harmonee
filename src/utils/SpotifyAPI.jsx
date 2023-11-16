@@ -81,15 +81,13 @@ const SpotifyAPI = ({ token, setToken, setUserData }) => {
     }, []);
 
     return (
-        <div>
-            {!token ? (
-                <button
-                    onClick={handleLogin}
-                    className="p-4 rounded-lg bg-emerald-500"
-                >
-                    Fetch Data from Spotify
-                </button>
-            ) : null}
+        <div className="bg-slate-50 flex w-screen h-screen justify-center items-center">
+            <button
+                onClick={handleLogin}
+                className="p-4 rounded-lg bg-emerald-500 text-white"
+            >
+                Login with Spotify Account
+            </button>
         </div>
     );
 };

@@ -14,6 +14,8 @@ function App() {
     const [active, setActive] = useState<number>();
     const [playlistURL, setPlaylistURL] = useState<string>();
 
+    console.log(token);
+
     const [newRelease, setNewRelease] = useState<string[]>();
     console.log(newRelease);
     console.log(userData);
@@ -133,6 +135,7 @@ function App() {
                     token={token}
                     setToken={setToken}
                     setUserData={setUserData}
+                    handlePlaySong={handlePlaySong}
                 />
             ) : (
                 <>
@@ -164,7 +167,7 @@ function App() {
                                                 key={id}
                                                 className={`${
                                                     active === id
-                                                        ? "text-cyan-400 font-bold"
+                                                        ? "text-cyan-400"
                                                         : "text-white"
                                                 } flex gap-4 hover:text-cyan-400 cursor-pointer items-center ease-in-out duration-150`}
                                                 onClick={() => {
@@ -176,20 +179,22 @@ function App() {
                                                 }}
                                             >
                                                 {active === id ? (
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        strokeWidth={1.5}
-                                                        stroke="currentColor"
-                                                        className="w-6 h-6"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
-                                                        />
-                                                    </svg>
+                                                    <span className="ps-2">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            strokeWidth={1.5}
+                                                            stroke="currentColor"
+                                                            className="w-4 h-4"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
+                                                            />
+                                                        </svg>
+                                                    </span>
                                                 ) : (
                                                     <span className="text-base text-center ps-3">
                                                         ◦
@@ -252,11 +257,29 @@ function App() {
                                                             </p>
 
                                                             <span className="text-xs text-white opacity-50">
-                                                                {
-                                                                    item?.track
-                                                                        .artists[0]
-                                                                        ?.name
-                                                                }
+                                                                {item?.track.artists.map(
+                                                                    (
+                                                                        artist,
+                                                                        index
+                                                                    ) => (
+                                                                        <span
+                                                                            key={
+                                                                                index
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                artist.name
+                                                                            }
+                                                                            {index <
+                                                                                item
+                                                                                    .track
+                                                                                    .artists
+                                                                                    .length -
+                                                                                    1 &&
+                                                                                ", "}
+                                                                        </span>
+                                                                    )
+                                                                )}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -268,19 +291,22 @@ function App() {
 
                             {/* Content */}
                             <div className="w-3/4 bg-slate-700 flex flex-col h-full overflow-hidden">
-                                <Content newRelease={newRelease} />
+                                <Content
+                                    newRelease={newRelease}
+                                    userData={userData}
+                                />
                             </div>
                         </div>
 
                         {/* Player */}
-                        <div className="h-24 flex bg-slate-800">
-                            {trackData && (
+                        {trackData && (
+                            <div className="h-24 flex bg-slate-900 border-t-2 border-slate-800 relative z-20">
                                 <MusicPlayer
                                     trackData={trackData}
                                     previewURL={previewURL}
                                 />
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 </>
             )}

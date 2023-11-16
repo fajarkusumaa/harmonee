@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const MusicPlayer = ({ trackData, previewURL, handlePlaySong }) => {
+const MusicPlayer = ({ trackData, previewURL }) => {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -66,7 +66,7 @@ const MusicPlayer = ({ trackData, previewURL, handlePlaySong }) => {
                         className="rounded-full h-12"
                     />
                     <div>
-                        <p className="line-clamp-1 w-2/3 font-semibold text-white">
+                        <p className="line-clamp-1 font-semibold text-white">
                             {trackData.name}
                         </p>
                         <p className="text-white opacity-50">

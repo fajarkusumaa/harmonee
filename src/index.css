@@ -28,3 +28,13 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+input[type='range'] {
+
+  -webkit-appearance: none;
+  @apply bg-slate-800 rounded-full
+}
+
+input[type='range']::-webkit-slider-thumb {
+  background: white !important;
+}
