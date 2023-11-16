@@ -1,27 +1,4 @@
-interface UserData {
-    display_name: string;
-    id: number;
-    images: Image[];
-}
-
-interface Image {
-    url: string;
-}
-interface NewRelease {
-    albums: {
-        items: Album[];
-    };
-}
-
-interface Album {
-    images: { url: string }[];
-    // Add other properties as needed
-}
-
-const Content: React.FC<{ userData: UserData; newRelease: NewRelease }> = ({
-    newRelease,
-    userData
-}) => {
+const Content = ({ newRelease, userData }) => {
     const menus = ["Discover", "My Library", "Radio"];
 
     console.log(userData);
@@ -44,7 +21,7 @@ const Content: React.FC<{ userData: UserData; newRelease: NewRelease }> = ({
                         })}
                     </ul>
                     {/* Search */}
-                    <div className="flex gap-3 rounded-full p-2 px-5 bg-white bg-opacity-25 w-96 items-center text-slate-600">
+                    <div className="flex gap-3 rounded-full p-2 px-5 bg-white bg-opacity-25 w-96 items-center text-slate">
                         {" "}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -73,11 +50,11 @@ const Content: React.FC<{ userData: UserData; newRelease: NewRelease }> = ({
                                 <img
                                     src={userData?.images[1]?.url}
                                     alt=""
-                                    className="h-10 rounded-full"
+                                    className="h-12 rounded-full"
                                 />
                             </div>
                         ) : (
-                            <div className="h-10 w-10 aspect-square rounded-full flex justify-center items-center bg-slate-600 text-white font-bold">
+                            <div className="h-12 w-12 aspect-square rounded-full flex justify-center items-center bg-slate-600 text-white font-bold">
                                 {userData.display_name
                                     .split(" ")
                                     .map((word) => word[0])

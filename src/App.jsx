@@ -7,18 +7,15 @@ import MusicPlayer from "./components/MusicPlayer.js";
 import Content from "./components/Content.js";
 
 function App() {
-    const [token, setToken] = useState<string>();
-    const [userData, setUserData] = useState<string>("");
-    const [playlistSong, setPlaylistSong] = useState<string[]>();
-    const [playlist, setPlaylist] = useState<string[]>();
-    const [active, setActive] = useState<number>();
-    const [playlistURL, setPlaylistURL] = useState<string>();
+    const [token, setToken] = useState();
+    const [userData, setUserData] = useState("");
+    const [playlistSong, setPlaylistSong] = useState();
+    const [playlist, setPlaylist] = useState();
 
-    console.log(token);
+    const [active, setActive] = useState();
+    const [playlistURL, setPlaylistURL] = useState();
 
-    const [newRelease, setNewRelease] = useState<string[]>();
-    console.log(newRelease);
-    console.log(userData);
+    const [newRelease, setNewRelease] = useState();
 
     useEffect(() => {
         const getNewRelease = {
@@ -82,7 +79,7 @@ function App() {
             });
     }, [playlistURL]);
 
-    const handlePlaylistSong = (url: string) => {
+    const handlePlaylistSong = (url) => {
         const getSong = {
             method: "GET",
             url: url + "?limit=10",
@@ -104,10 +101,9 @@ function App() {
     };
 
     const [previewURL, setPreviewURL] = useState();
-    console.log(previewURL);
-    const [trackData, setTrackData] = useState<string[]>();
+    const [trackData, setTrackData] = useState();
 
-    const handlePlaySong = (idTrack: string) => {
+    const handlePlaySong = (idTrack) => {
         const getTrack = {
             method: "GET",
             url: "https://api.spotify.com/v1/tracks/" + idTrack,
