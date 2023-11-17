@@ -36,5 +36,12 @@ input[type='range'] {
 }
 
 input[type='range']::-webkit-slider-thumb {
-  background: white !important;
+  -webkit-appearance: none;
+
+  appearance: none;
+  width: 16px;
+  border-radius: 1000px;
+  height: 16px;
+  cursor: pointer;
+  @apply bg-cyan-400
 }

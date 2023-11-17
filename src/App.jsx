@@ -8,8 +8,10 @@ import Content from "./components/Content.jsx";
 
 function App() {
     const [token, setToken] = useState();
+
     const [userData, setUserData] = useState("");
     const [playlistSong, setPlaylistSong] = useState();
+
     const [playlist, setPlaylist] = useState();
 
     const [active, setActive] = useState();
@@ -139,7 +141,7 @@ function App() {
                         {/* Main Content */}
                         <div className="w-full flex flex-1 h-5/6">
                             {/* Sidebar */}
-                            <div className="w-1/4 bg-slate-900 p-8 pt-0 flex flex-col gap-4 h-full">
+                            <div className="w-1/4 bg-slate-900 border-r-2 border-slate-800 p-8 pt-0 flex flex-col gap-4 h-full">
                                 {/* Logo */}
                                 {/* <div>
                                     <img
@@ -290,6 +292,7 @@ function App() {
                                 <Content
                                     newRelease={newRelease}
                                     userData={userData}
+                                    token={token}
                                 />
                             </div>
                         </div>
